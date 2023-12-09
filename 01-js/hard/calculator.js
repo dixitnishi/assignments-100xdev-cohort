@@ -16,6 +16,133 @@
   Once you've implemented the logic, test your code by running
 */
 
-class Calculator {}
+class Calculator {
+  constructor(){
+    this.result = 0;
+  }
+
+  add(number){
+    this.result+=number;
+  }
+
+  subtract(number){
+    this.result-=number;
+  }
+
+  divide(number){
+    if (number === 0) {
+      throw new Error('Cannot divide by zero');
+    }
+    this.result/=number;
+  }
+
+  clear(){
+    this.result=0;
+  }
+
+  multiply(number){
+    this.result*=number;
+  }
+
+  getResult(){
+    return this.result;
+  }
+
+  // cleanString(expression) {
+  //   return expression.replace(/\s/g, '');
+  // }
+
+  // containsOtherCharacters(str) {
+  //   const pattern = /[^+\-/*\d()]/;
+  //   return pattern.test(str);
+  // }
+
+  // calculate(expression) {
+  //   expression = this.cleanString(expression);
+
+  //   if (this.containsOtherCharacters(expression)) {
+  //     throw new Error('Invalid Input');
+  //   }
+
+  //   const tokens = expression.match(/(\d+|\+|\-|\*|\/|\(|\))/g);
+
+  //   const operators = [];
+  //   const operands = [];
+
+  //   for (let token of tokens) {
+  //     if (!isNaN(parseFloat(token))) {
+  //       operands.push(parseFloat(token));
+  //     } else if (token === '(') {
+  //       operators.push(token);
+  //     } else if (token === ')') {
+  //       while (operators.length !== 0 && operators[operators.length - 1] !== '(') {
+  //         this.performOperation(operators.pop(), operands);
+  //       }
+  //       operators.pop();
+  //     } else {
+  //       while (
+  //         operators.length !== 0 &&
+  //         this.precedence(operators[operators.length - 1]) >= this.precedence(token)
+  //       ) {
+  //         this.performOperation(operators.pop(), operands);
+  //       }
+  //       operators.push(token);
+  //     }
+  //   }
+
+  //   while (operators.length !== 0) {
+  //     this.performOperation(operators.pop(), operands);
+  //   }
+
+  //   this.result = operands[0];
+  // }
+
+  // precedence(operator) {
+  //   if (operator === '+' || operator === '-') {
+  //     return 1;
+  //   } else if (operator === '*' || operator === '/') {
+  //     return 2;
+  //   }
+  //   return 0;
+  // }
+
+  // performOperation(operator, operands) {
+  //   const num2 = operands.pop();
+  //   const num1 = operands.pop();
+
+  //   switch (operator) {
+  //     case '+':
+  //       operands.push(num1 + num2);
+  //       break;
+  //     case '-':
+  //       operands.push(num1 - num2);
+  //       break;
+  //     case '*':
+  //       operands.push(num1 * num2);
+  //       break;
+  //     case '/':
+  //       operands.push(num1 / num2);
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
+  calculate(expression){
+
+    expression=expression.replace(/\s+/g, ' ').trim();
+
+    if(!(/^[0-9+-/(). ]+$/.test(expression))){
+      throw new Error("Invalid characters in the expression")
+    }
+    try {
+      // Evaluate the expression and update the result
+      this.result = eval(expression);
+    } catch (error) {
+      throw new Error("Invalid expression");
+    }
+  }
+
+
+}
 
 module.exports = Calculator;

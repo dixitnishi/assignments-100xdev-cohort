@@ -4,6 +4,20 @@
 */
 
 function isPalindrome(str) {
+  let intialString = str.split(" ").join("").toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"");
+  let lengthOfInitial = intialString.length;
+  if(lengthOfInitial===1){
+    return true;
+  }
+  // let revStr = [...str].reverse().join("").split(" ").join("").toLowerCase();
+  // console.log(intialString);
+  // console.log(revStr);
+  // return intialString == revStr?true:false;
+  for(let i  = 0;i<intialString.length;i++){
+    if(intialString[i] != intialString[lengthOfInitial-i-1]){
+      return false;
+    }
+  }
   return true;
 }
 
